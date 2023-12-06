@@ -1,1 +1,41 @@
+<mat-form-field *ngIf="provinces!=null; else espera">
+    <mat-label>Provincias</mat-label>
+    <mat-select [(ngModel)]="provinceSeleccionado" (selectionChange)="actualizar()">
+      <mat-option *ngFor=" let province of provinces.data" value="{{province.id}}">{{province.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
+  <ng-template #espera>Cargando provincias...</ng-template>
+
+  <mat-form-field *ngIf="cities!=null; else espera2">
+    <mat-label>Ciudades</mat-label>
+    <mat-select>
+      <mat-option *ngFor=" let city of cities.data" value="{{city.id}}">{{city.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <ng-template #espera2>Cargando ciudades...</ng-template>
+
+  <mat-card style="border: 1px solid;width: 300px;">
+    <mat-card-header><strong>Cancha</strong></mat-card-header>
+    <mat-card-content>Horarios: 9 a 13hs, 16 a 18hs, 21 a 00hs</mat-card-content>
+  </mat-card>
+  <mat-card style="border: 1px solid;width: 300px;">
+    <mat-card-header><strong>Cancha</strong></mat-card-header>
+    <mat-card-content>Horarios: 9 a 13hs, 16 a 18hs, 21 a 00hs</mat-card-content>
+  </mat-card>
+  <mat-card style="border: 1px solid;width: 300px;">
+    <mat-card-header><strong>Cancha</strong></mat-card-header>
+    <mat-card-content>Horarios: 9 a 13hs, 16 a 18hs, 21 a 00hs</mat-card-content>
+  </mat-card>
+  <mat-card style="border: 1px solid;width: 300px;">
+    <mat-card-header><strong>Cancha</strong></mat-card-header>
+    <mat-card-content>Horarios: 9 a 13hs, 16 a 18hs, 21 a 00hs</mat-card-content>
+  </mat-card>
+  <mat-card style="border: 1px solid;width: 300px;">
+    <mat-card-header><strong>Cancha</strong></mat-card-header>
+    <mat-card-content>Horarios: 9 a 13hs, 16 a 18hs, 21 a 00hs</mat-card-content>
+  </mat-card>
+  <mat-card style="border: 1px solid;width: 300px;">
+    <mat-card-header><strong>Cancha</strong></mat-card-header>
+    <mat-card-content>Horarios: 9 a 13hs, 16 a 18hs, 21 a 00hs</mat-card-content>
+  </mat-card>

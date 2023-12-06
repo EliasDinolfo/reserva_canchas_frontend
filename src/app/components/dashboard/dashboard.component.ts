@@ -13,23 +13,5 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  provinces: any;
-  cities: any;
-  provinceSeleccionado: string = '0';
-  constructor(private dataService: DataService) {}
-
-  ngOnInit() {
-    this.dataService
-      .getProvinces()
-      .subscribe((result) => (this.provinces = result));
-    this.dataService
-      .getCities(this.provinceSeleccionado)
-      .subscribe((result) => (this.cities = result));
-  }
-  actualizar() {
-    console.log('oa');
-    this.dataService
-      .getCities(this.provinceSeleccionado)
-      .subscribe((result) => (this.cities = result));
-  }
+  
 }
