@@ -3,72 +3,77 @@
         <span>Usuarios</span>
     </mat-toolbar>
 
-    <mat-form-field>
-      <mat-label>Filtro</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Usuario, Nombre, Apellido, DNI, Teléfono, Email o Rol" #input autocomplete="off">
-    </mat-form-field>
-
-    <div class="mat-elevation-z8">
-      <table id="tabla" mat-table [dataSource]="dataSource" matSort>
-     
-        <!-- Position Column -->
-        <ng-container matColumnDef="username">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
-          <td mat-cell *matCellDef="let element"> {{element.username}} </td>
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="lastname">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
-          <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
-        </ng-container>
-      
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="dni">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> DNI </th>
-          <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="phone_number">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </th>
-            <td mat-cell *matCellDef="let element"> {{element.phone_number}} </td>
+    <div *ngIf="listUsuarios.length > 0">
+      <mat-form-field>
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Usuario, Nombre, Apellido, DNI, Teléfono, Email o Rol" #input autocomplete="off">
+      </mat-form-field>
+  
+      <div class="mat-elevation-z8">
+        <table id="tabla" mat-table [dataSource]="dataSource" matSort>
+       
+          <!-- Position Column -->
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+            <td mat-cell *matCellDef="let element"> {{element.username}} </td>
           </ng-container>
-
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="role">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
-            <td mat-cell *matCellDef="let element"> {{element.role}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> </th>
-            <td id="iconos" *matCellDef="let element"> 
-                <a class="pointer" style="color: #1878b0;" matTooltip="Más información">
-                    <mat-icon>search</mat-icon>
-                </a>
-                <a class="pointer" style="color: #1f516f" matTooltip="Editar usuario">
-                    <mat-icon>edit</mat-icon>
-                </a>
-                <a class="pointer" style="color: rgb(209, 3, 3)" matTooltip="Eliminar usuario">
-                    <mat-icon>delete</mat-icon>
-                </a>
-            </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"  aria-label="Select page of users"></mat-paginator>
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+        
+          <!-- Weight Column -->
+          <ng-container matColumnDef="lastname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+            <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+          </ng-container>
+        
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="dni">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> DNI </th>
+            <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="phone_number">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </th>
+              <td mat-cell *matCellDef="let element"> {{element.phone_number}} </td>
+            </ng-container>
+  
+          <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="role">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
+              <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td id="iconos" *matCellDef="let element; let i = index"> 
+                  <a class="pointer" style="color: #1878b0;" matTooltip="Más información">
+                      <mat-icon>search</mat-icon>
+                  </a>
+                  <a class="pointer" style="color: #1f516f" matTooltip="Editar usuario">
+                      <mat-icon>edit</mat-icon>
+                  </a>
+                  <a class="pointer" (click)="eliminarUsuario(i)" style="color: rgb(209, 3, 3)" matTooltip="Eliminar usuario">
+                      <mat-icon>delete</mat-icon>
+                  </a>
+              </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+  
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"  aria-label="Select page of users"></mat-paginator>
+      </div>
     </div>
+
+    <h2 *ngIf="listUsuarios.length == 0">No hay usuarios para mostrar</h2>
+    
 </div>
