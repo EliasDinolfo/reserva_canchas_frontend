@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 
-
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.scss']
+  styleUrls: ['./inicio.component.scss'],
 })
 export class InicioComponent {
   provinces: any;
@@ -22,7 +21,6 @@ export class InicioComponent {
       .subscribe((result) => (this.cities = result));
   }
   actualizar() {
-    console.log('oa');
     this.dataService
       .getCities(this.provinceSeleccionado)
       .subscribe((result) => (this.cities = result));

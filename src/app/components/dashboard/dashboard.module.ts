@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProvinciasComponent } from './provincias/provincias.component';
 //import { ReportesComponent } from './reportes/reportes.component';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { FooterComponent } from './footer/footer.component';
     UsuariosComponent,
     CrearUsuarioComponent,
     FooterComponent,
+    ProvinciasComponent,
     //ReportesComponent
   ],
   imports: [CommonModule, DashboardRoutingModule, SharedModule, FormsModule],

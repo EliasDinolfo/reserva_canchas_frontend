@@ -6,5 +6,9 @@
     {
         "nombre": "Usuarios",
         "redirect": "/dashboard/usuarios"
+    },
+    {
+        "nombre": "Provincias",
+        "redirect": "/dashboard/provincias"
     }
 ]
