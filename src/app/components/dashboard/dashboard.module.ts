@@ -21,6 +21,7 @@ import { ProvinciasComponent } from './provincias/provincias.component';
     CrearUsuarioComponent,
     FooterComponent,
     ProvinciasComponent,
+    /*  CrearProvinciaComponent, */
     //ReportesComponent
   ],
   imports: [CommonModule, DashboardRoutingModule, SharedModule, FormsModule],

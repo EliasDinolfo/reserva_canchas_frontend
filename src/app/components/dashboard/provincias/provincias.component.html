@@ -1,6 +1,10 @@
 <div class="container">
+    <p style="color: red;">{{mensaje}}</p>
     <mat-toolbar style="margin-bottom: 25px;">
         <span>Provincias</span>
+        <div class="example-spacer"></div>
+
+        <button mat-raised-button color="primary" routerLink="/dashboard/crear-provincia">AGREGAR</button>
     </mat-toolbar>
     <mat-form-field>
         <mat-label>Filtro</mat-label>
@@ -27,7 +31,8 @@
                     <a class="pointer" style="color: #1878b0;" matTooltip="Más información">
                         <mat-icon>search</mat-icon>
                     </a>
-                    <a class="pointer" style="color: #1f516f" matTooltip="Editar provincia">
+                    <a class="pointer" style="color: #1f516f" matTooltip="Editar provincia"
+                        routerLink="/dashboard/actualizar-provincia/{{element.id}}">
                         <mat-icon>edit</mat-icon>
                     </a>
                     <a class="pointer" style="color: rgb(209, 3, 3)" matTooltip="Eliminar provincia"

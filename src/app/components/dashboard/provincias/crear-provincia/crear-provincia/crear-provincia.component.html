@@ -1,0 +1,13 @@
+<div class="container">
+    <h2>Creación de provincia</h2>
+    <mat-error ngIf="error.length===0">{{error}}</mat-error>
+    <form>
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput required [formControl]="nombre">
+            <mat-error ngIf="nombre.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field><br>
+        <button style="margin-right: 25px;" mat-raised-button routerLink="/dashboard/provincias">Cancelar</button>
+        <button type="submit" mat-raised-button color="primary" (click)="crear()">Confirmar</button>
+    </form>
+</div>

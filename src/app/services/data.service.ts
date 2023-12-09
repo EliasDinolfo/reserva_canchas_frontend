@@ -37,7 +37,7 @@ export class DataService {
   getOneProvince(id: string): Observable<Province> {
     return this.http.get(`${this.apiURL}provinces/` + id).pipe(
       map((response: any) => {
-        const province: Province = response.province;
+        const province: Province = response.data;
         return province;
       })
     );
