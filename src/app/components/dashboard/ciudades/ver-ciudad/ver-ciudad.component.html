@@ -1,0 +1,19 @@
+<div class="container">
+    <p><button style="margin-right: 25px;" mat-raised-button routerLink="/dashboard/ciudades">Volver</button><br></p>
+    <mat-toolbar style="margin-bottom: 25px;">
+        <span>Ciudad:</span>
+        <div class="example-spacer"></div>
+    </mat-toolbar>
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput readonly [ngModel]="nombre">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Código postal</mat-label>
+        <input matInput readonly [ngModel]="codigo_postal">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Provincia</mat-label>
+        <input matInput readonly [ngModel]="provincia.name">
+    </mat-form-field>
+</div>
