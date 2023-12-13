@@ -2,19 +2,19 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DataService } from 'src/app/services/data.service';
+import { CiudadService } from 'src/app/services/ciudad.service';
 
 @Component({
-  selector: 'app-provincias',
-  templateUrl: './provincias.component.html',
-  styleUrls: ['./provincias.component.scss'],
+  selector: 'app-ciudades',
+  templateUrl: './ciudades.component.html',
+  styleUrls: ['./ciudades.component.scss'],
 })
-export class ProvinciasComponent {
-  provinces: any;
+export class CiudadesComponent {
+  cities: any;
   public mensaje = sessionStorage.getItem('mensaje');
-  constructor(private dataService: DataService) {}
+  constructor(private cityService: CiudadService) {}
 
-  displayedColumns: string[] = ['name', 'actions'];
+  displayedColumns: string[] = ['name', 'postal_code', 'province', 'actions'];
   dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -23,9 +23,19 @@ export class ProvinciasComponent {
   ngOnInit() {
     this.dataSource.filterPredicate = (data: any, filter: any): any =>
       data.name.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !==
-      -1;
-    this.dataService
-      .getProvinces()
+        -1 ||
+      data.postal_code
+        .trim()
+        .toLowerCase()
+        .indexOf(filter.trim().toLowerCase()) !== -1 ||
+      (data.province.name !== undefined &&
+        data.province.name
+          .trim()
+          .toLowerCase()
+          .indexOf(filter.trim().toLowerCase()) !== -1);
+
+    this.cityService
+      .getCities()
       .subscribe((result: any) => (this.dataSource.data = result.data));
   }
 
@@ -43,10 +53,10 @@ export class ProvinciasComponent {
 
   eliminacion(id: string) {
     if (confirm('¿Estás seguro que quieres eliminar la provincia?')) {
-      this.dataService.deleteProvince(id).subscribe({
+      this.cityService.deleteCity(id).subscribe({
         next: (result2: any) => {
           this.mensaje = '';
-          this.dataService.getProvinces().subscribe((result: any) => {
+          this.cityService.getCities().subscribe((result: any) => {
             this.dataSource.data = result.data;
             this.dataSource.connect().next(result.data);
             this.ngAfterViewInit();

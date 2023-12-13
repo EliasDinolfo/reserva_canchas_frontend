@@ -50,7 +50,6 @@ export class CrearProvinciaComponent {
           if (
             e.error.message.includes('E11000 duplicate key error collection')
           ) {
-            console.log('llegue');
             this.error = 'La provincia ingresada ya existe.';
           }
         },

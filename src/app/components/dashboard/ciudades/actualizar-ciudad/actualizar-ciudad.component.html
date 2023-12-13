@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Actualización de ciudad</h2>
+    <mat-error ngIf="error.length===0">{{error}}</mat-error>
+    <form>
+        <input matInput [formControl]="nombreAnterior" hidden>
+        <input matInput [formControl]="codigoPostalAnterior" hidden>
+        <input matInput [formControl]="provinciaAnterior" hidden>
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput required [formControl]="nombre">
+            <mat-error ngIf="nombre.length==0">Debe ingresar un valor.</mat-error>
+        </mat-form-field>&nbsp;
+        <mat-form-field>
+            <mat-label>Código postal</mat-label>
+            <input matInput required [formControl]="codigoPostal">
+            <mat-error ngIf="codigoPostal.length==0">Debe ingresar un valor.</mat-error>
+        </mat-form-field>&nbsp;
+        <mat-form-field>
+            <mat-label>Provincia</mat-label>
+            <mat-select required [formControl]="provincia">
+                <mat-option *ngFor=" let provincia of provincias.data"
+                    value="{{provincia.id}}">{{provincia.name}}</mat-option>
+            </mat-select>
+            <mat-error ngIf="provincia===0">Debe seleccionar un valor.</mat-error>
+        </mat-form-field><br>
+        <button style="margin-right: 25px;" mat-raised-button routerLink="/dashboard/ciudades">Cancelar</button>
+        <button type="submit" mat-raised-button color="primary" (click)="actualizar()">Confirmar</button>
+    </form>
+</div>

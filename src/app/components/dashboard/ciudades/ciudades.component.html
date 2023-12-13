@@ -1,14 +1,15 @@
 <div class="container">
     <mat-error>{{mensaje}}</mat-error>
     <mat-toolbar style="margin-bottom: 25px;">
-        <span>Provincias</span>
+        <span>Ciudades</span>
         <div class="example-spacer"></div>
 
-        <button mat-raised-button color="primary" routerLink="/dashboard/crear-provincia">AGREGAR</button>
+        <button mat-raised-button color="primary" routerLink="/dashboard/crear-ciudad">AGREGAR</button>
     </mat-toolbar>
     <mat-form-field>
         <mat-label>Filtro</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Nombre" #input autocomplete="off">
+        <input matInput (keyup)="applyFilter($event)" placeholder="Nombre, código postal, provincia" #input
+            autocomplete="off">
     </mat-form-field>
 
     <div class="mat-elevation-z8">
@@ -25,18 +26,30 @@
                 <td mat-cell *matCellDef="let element"> {{element.name}} </td>
             </ng-container>
 
+            <!-- Postal Code Column -->
+            <ng-container matColumnDef="postal_code">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Código postal </th>
+                <td mat-cell *matCellDef="let element"> {{element.postal_code}} </td>
+            </ng-container>
+
+            <!-- Province Column -->
+            <ng-container matColumnDef="province">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Provincia </th>
+                <td mat-cell *matCellDef="let element"> {{element.province.name}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> </th>
                 <td id="iconos" *matCellDef="let element">
                     <a class="pointer" style="color: #1878b0;" matTooltip="Más información"
-                        routerLink="/dashboard/ver-provincia/{{element.id}}">
+                        routerLink="/dashboard/ver-ciudad/{{element.id}}">
                         <mat-icon>search</mat-icon>
                     </a>
-                    <a class="pointer" style="color: #1f516f" matTooltip="Editar provincia"
-                        routerLink="/dashboard/actualizar-provincia/{{element.id}}">
+                    <a class="pointer" style="color: #1f516f" matTooltip="Editar ciudad"
+                        routerLink="/dashboard/actualizar-ciudad/{{element.id}}">
                         <mat-icon>edit</mat-icon>
                     </a>
-                    <a class="pointer" style="color: rgb(209, 3, 3)" matTooltip="Eliminar provincia"
+                    <a class="pointer" style="color: rgb(209, 3, 3)" matTooltip="Eliminar ciudad"
                         (click)="eliminacion(element.id)">
                         <mat-icon>delete</mat-icon>
                     </a>

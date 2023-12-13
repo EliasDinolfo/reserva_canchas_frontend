@@ -10,5 +10,9 @@
     {
         "nombre": "Provincias",
         "redirect": "/dashboard/provincias"
+    },
+    {
+        "nombre": "Ciudades",
+        "redirect": "/dashboard/ciudades"
     }
 ]
