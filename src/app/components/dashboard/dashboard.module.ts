@@ -18,7 +18,7 @@ import { ProvinciasComponent } from './provincias/provincias.component';
     InicioComponent,
     NavbarComponent,
     UsuariosComponent,
-    CrearUsuarioComponent,
+    //CrearUsuarioComponent,
     FooterComponent,
     ProvinciasComponent,
     /*  CrearProvinciaComponent, */

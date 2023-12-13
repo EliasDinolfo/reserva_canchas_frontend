@@ -1,5 +1,7 @@
 export interface Usuario {
+    _id?: string;
     username: string,
+    password: string
     name: string,
     lastname: string,
     dni: string,

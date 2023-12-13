@@ -1,1 +1,50 @@
-<p>crear-usuario works!</p>
+<div class="container">
+    <h2>Creación de usuario</h2>
+    <mat-error ngIf="error.length===0">{{error}}</mat-error>
+    <form>
+        <mat-form-field>
+            <mat-label>Nombre de Usuario</mat-label>
+            <input matInput required [formControl]="nombreUsuario">
+            <mat-error ngIf="nombreUsuario.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field><br>
+        <mat-form-field  appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input type="password" matInput autocomplete="off" required [formControl]="contrasena">
+            <mat-error ngIf="contrasena.length==0">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <br>
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput required [formControl]="nombre">
+            <mat-error ngIf="nombre.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>Apellido</mat-label>
+            <input matInput required [formControl]="apellido">
+            <mat-error ngIf="apellido.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>DNI</mat-label>
+            <input matInput required [formControl]="dni">
+            <mat-error ngIf="dni.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>Teléfono</mat-label>
+            <input matInput required [formControl]="telefono">
+            <mat-error ngIf="telefono.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput required [formControl]="email">
+            <mat-error ngIf="email.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>Rol</mat-label>
+            <input matInput required [formControl]="rol">
+            <mat-error ngIf="rol.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field><br>
+        
+        <button style="margin-right: 25px;" mat-raised-button routerLink="/dashboard/usuarios">Cancelar</button>
+        <button type="submit" mat-raised-button color="primary" (click)="crear()">Confirmar</button>
+    </form>
+</div>

@@ -1,11 +1,16 @@
-import { Injectable } from '@angular/core';
 import { Usuario } from '../interfaces/usuario';
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
+  /*
    //Estos datos son de prueba, luego hay que conectarlo con el backend y base de datos
    listUsuarios: Usuario[] = [
     {username: 'pgonzalez', name: 'Pedro', lastname: 'Gonzalez', dni: '40123423', phone_number: '3414364287', email: 'pgonzalez@mail.com', role: 'Cliente'},
@@ -31,5 +36,41 @@ export class UsuarioService {
 
   eliminarUsuario(index: number) {
     this.listUsuarios.splice(index, 1);
+  }
+  */
+
+
+  private apiURL = 'http://localhost:3000/api/';
+  //private apiURL=`${environment.api}/api/v1`;   no se conecta en el vercel
+  //private apiURL='http://localhost:3000/api/v1';
+
+  constructor(private http: HttpClient) {}
+
+  getUsuarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.apiURL}users`);
+  }
+
+  deleteUsuario(id: string): Observable<Usuario> {
+    return this.http.delete<Usuario>(`${this.apiURL}users/` + id);
+  }
+
+  saveUsuario(usuario: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.apiURL}users`, usuario);
+  }
+
+  editUsuario(usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(
+      `${this.apiURL}users/${usuario._id}`,
+      usuario
+    );
+  }
+
+  getOneUsuario(id: string): Observable<Usuario> {
+    return this.http.get(`${this.apiURL}users/` + id).pipe(
+      map((response: any) => {
+        const usuario: Usuario = response.data;
+        return usuario;
+      })
+    );
   }
 }
