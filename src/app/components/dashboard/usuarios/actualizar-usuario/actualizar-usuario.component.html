@@ -1,0 +1,64 @@
+<div class="container">
+    <h2>Actualización de usuario</h2>
+    <form>
+        
+        <input matInput [formControl]="nombreUsuarioAnterior" hidden>
+        <input matInput [formControl]="contrasenaAnterior" hidden>
+        <input matInput [formControl]="nombreAnterior" hidden>
+        <input matInput [formControl]="apellidoAnterior" hidden>
+        <input matInput [formControl]="dniAnterior" hidden>
+        <input matInput [formControl]="telefonoAnterior" hidden>
+        <input matInput [formControl]="emailAnterior" hidden>
+        <input matInput [formControl]="rolAnterior" hidden>
+
+        <mat-form-field>
+            <mat-label>Nombre de Usuario</mat-label>
+            <input matInput required [formControl]="nombreUsuario">
+            <mat-error ngIf="nombreUsuario.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input type="password" matInput autocomplete="off" required [formControl]="contrasena">
+            <mat-error ngIf="contrasena.length==0">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <br>
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput required [formControl]="nombre">
+            <mat-error ngIf="nombre.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Apellido</mat-label>
+            <input matInput required [formControl]="apellido">
+            <mat-error ngIf="apellido.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>DNI</mat-label>
+            <input matInput required [formControl]="dni">
+            <mat-error ngIf="dni.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>Teléfono</mat-label>
+            <input matInput required [formControl]="telefono">
+            <mat-error ngIf="telefono.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput required [formControl]="email">
+            <mat-error ngIf="email.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field><br>
+
+        <mat-form-field>
+        <mat-label>Rol</mat-label>
+            <mat-select required [formControl]="rol">
+              <mat-option value="Administrador">Administrador</mat-option>
+              <mat-option value="Operador">Operador</mat-option>
+              <mat-option value="Cliente">Cliente</mat-option>
+            </mat-select>
+            <mat-error ngIf="rol.length==0">{{getErrorMessage()}}</mat-error>
+        </mat-form-field><br>
+
+        <button style="margin-right: 25px;" mat-raised-button routerLink="/dashboard/usuarios">Cancelar</button>
+        <button type="submit" mat-raised-button color="primary" (click)="actualizar()">Confirmar</button>
+    </form>
+</div>
