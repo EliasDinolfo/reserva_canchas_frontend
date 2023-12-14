@@ -12,6 +12,9 @@ import { RouterLink } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/interfaces/usuario';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSelectModule} from '@angular/material/select';
+
 
 @Component({
   selector: 'app-crear-usuario',
@@ -25,6 +28,7 @@ import { Usuario } from 'src/app/interfaces/usuario';
     ReactiveFormsModule,
     MatButtonModule,
     RouterLink,
+    MatSelectModule
   ],
 })
 export class CrearUsuarioComponent {
@@ -38,7 +42,8 @@ export class CrearUsuarioComponent {
   email = new FormControl('', [Validators.required]);
   rol = new FormControl('', [Validators.required]);
   contrasena = new FormControl('', [Validators.required]);
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  
+  constructor(private usuarioService: UsuarioService, private router: Router, private _snackBar: MatSnackBar) {}
   getErrorMessage() {
     if (this.nombre.hasError('required')) {
       return 'Debes ingresar un valor.';
@@ -68,7 +73,7 @@ export class CrearUsuarioComponent {
     return '';
   }
   crear() {
-    this.error = '';
+    //this.error = '';
     if (this.getErrorMessage().length === 0) {
       const usuario: Usuario = { username: this.nombreUsuario.value || '',
                                  password: this.contrasena.value || '',
@@ -81,14 +86,27 @@ export class CrearUsuarioComponent {
                                 };
       this.usuarioService.saveUsuario(usuario).subscribe({
         next: (result) => {
+          sessionStorage.setItem(
+            'mensaje',
+            'El usuario fue creado con éxito.'
+          );
+          sessionStorage.setItem('tipo_mensaje', 'green-snackbar');
           this.router.navigate(['/dashboard/usuarios']);
         },
         error: (e) => {
           if (
             e.error.message.includes('E11000 duplicate key error collection')
           ) {
-            console.log('llegue');
-            this.error = 'El usuario ingresado ya existe.';
+            this._snackBar.open(
+              'El usuario ingresado ya existe (nombre).',
+              '',
+              {
+                duration: 5000,
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+                panelClass: ['red-snackbar'],
+              }
+            );
           }
         },
       });

@@ -58,6 +58,7 @@ export class UsuariosComponent {
 
   usuarios: any;
   public mensaje = sessionStorage.getItem('mensaje');
+  public tipo_mensaje = sessionStorage.getItem('tipo_mensaje');
   constructor(private usuarioService: UsuarioService, private _snackBar: MatSnackBar) {}
 
   displayedColumns: string[] = ['username', 'name', 'lastname', 'dni', 'phone_number', 'email', 'role', 'actions'];
@@ -67,6 +68,22 @@ export class UsuariosComponent {
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit() {
+    if (this.mensaje !== null) {
+      this._snackBar.open(this.mensaje, '', {
+        duration: 5000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        panelClass: [this.tipo_mensaje || ''],
+      });
+      this.mensaje = null;
+      this.tipo_mensaje = null;
+      sessionStorage.removeItem('mensaje');
+      sessionStorage.removeItem('tipo_mensaje');
+    }
+
+    this.dataSource.filterPredicate = (data: any, filter: any): any =>
+      data.name.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !==
+      -1;
     this.usuarioService
       .getUsuarios()
       .subscribe((result: any) => (this.dataSource.data = result.data));
@@ -96,9 +113,10 @@ export class UsuariosComponent {
     }
 
     this._snackBar.open('El usuario fue eliminado con éxito', '', {
-      duration: 3000,
+      duration: 5000,
       horizontalPosition: 'center',
-      verticalPosition: 'bottom'
+      verticalPosition: 'bottom',
+      panelClass: ['green-snackbar'],
     })
   }
 }
