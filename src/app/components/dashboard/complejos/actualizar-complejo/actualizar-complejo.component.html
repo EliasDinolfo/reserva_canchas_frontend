@@ -1,0 +1,48 @@
+<div class="container">
+    <h2>Actualización de complejo</h2>
+    <form>
+        <input matInput [formControl]="nombreAnterior" hidden>
+        <input matInput [formControl]="direccionAnterior" hidden>
+        <input matInput [formControl]="telefonoAnterior" hidden>
+        <input matInput [formControl]="emailAnterior" hidden>
+        <input matInput [formControl]="provinciaAnterior" hidden>
+        <input matInput [formControl]="ciudadAnterior" hidden>
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput required [formControl]="nombre">
+            <mat-error ngIf="nombre.length==0">Debe ingresar un valor.</mat-error>
+        </mat-form-field>&nbsp;
+        <mat-form-field>
+            <mat-label>Dirección</mat-label>
+            <input matInput required [formControl]="direccion">
+            <mat-error ngIf="direccion.length==0">Debe ingresar un valor.</mat-error>
+        </mat-form-field>&nbsp;
+        <mat-form-field>
+            <mat-label>Teléfono</mat-label>
+            <input matInput required [formControl]="telefono">
+            <mat-error ngIf="telefono.length==0">Debe ingresar un valor.</mat-error>
+        </mat-form-field>&nbsp;
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput required [formControl]="email">
+            <mat-error ngIf="email.length==0">Debe ingresar un valor.</mat-error>
+        </mat-form-field>&nbsp;
+        <mat-form-field>
+            <mat-label>Provincia</mat-label>
+            <mat-select required [formControl]="provincia" (selectionChange)="actualizarSeleccion()">
+                <mat-option *ngFor=" let provincia of provincias.data"
+                    value="{{provincia.id}}">{{provincia.name}}</mat-option>
+            </mat-select>
+            <mat-error ngIf="provincia===0">Debe seleccionar un valor.</mat-error>
+        </mat-form-field>&nbsp;
+        <mat-form-field>
+            <mat-label>Ciudad</mat-label>
+            <mat-select required [formControl]="ciudad">
+                <mat-option *ngFor=" let ciudad of ciudades.data" value="{{ciudad.id}}">{{ciudad.name}}</mat-option>
+            </mat-select>
+            <mat-error ngIf="ciudad===0">Debe seleccionar un valor.</mat-error>
+        </mat-form-field><br>
+        <button style="margin-right: 25px;" mat-raised-button routerLink="/dashboard/complejos">Cancelar</button>
+        <button type="submit" mat-raised-button color="primary" (click)="actualizar()">Confirmar</button>
+    </form>
+</div>

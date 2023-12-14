@@ -13,6 +13,10 @@ import { CiudadesComponent } from './ciudades/ciudades.component';
 import { CrearCiudadComponent } from './ciudades/crear-ciudad/crear-ciudad.component';
 import { ActualizarCiudadComponent } from './ciudades/actualizar-ciudad/actualizar-ciudad.component';
 import { VerCiudadComponent } from './ciudades/ver-ciudad/ver-ciudad.component';
+import { ComplejosComponent } from './complejos/complejos.component';
+import { CrearComplejoComponent } from './complejos/crear-complejo/crear-complejo.component';
+import { ActualizarComplejoComponent } from './complejos/actualizar-complejo/actualizar-complejo.component';
+import { VerComplejoComponent } from './complejos/ver-complejo/ver-complejo.component';
 //import { ReportesComponent } from './reportes/reportes.component';
 
 const routes: Routes = [
@@ -43,6 +47,16 @@ const routes: Routes = [
       {
         path: 'ver-ciudad/:id',
         component: VerCiudadComponent,
+      },
+      { path: 'complejos', component: ComplejosComponent },
+      { path: 'crear-complejo', component: CrearComplejoComponent },
+      {
+        path: 'actualizar-complejo/:id',
+        component: ActualizarComplejoComponent,
+      },
+      {
+        path: 'ver-complejo/:id',
+        component: VerComplejoComponent,
       },
     ],
   },

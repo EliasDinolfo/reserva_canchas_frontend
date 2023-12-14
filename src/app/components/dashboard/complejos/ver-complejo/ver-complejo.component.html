@@ -1,0 +1,31 @@
+<div class="container">
+    <p><button style="margin-right: 25px;" mat-raised-button routerLink="/dashboard/complejos">Volver</button><br></p>
+    <mat-toolbar style="margin-bottom: 25px;">
+        <span>Complejo:</span>
+        <div class="example-spacer"></div>
+    </mat-toolbar>
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput readonly [ngModel]="nombre">
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+        <mat-label>Dirección</mat-label>
+        <input matInput readonly [ngModel]="direccion">
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+        <mat-label>Teléfono</mat-label>
+        <input matInput readonly [ngModel]="telefono">
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput readonly [ngModel]="email">
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+        <mat-label>Provincia</mat-label>
+        <input matInput readonly [ngModel]="provincia">
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+        <mat-label>Ciudad</mat-label>
+        <input matInput readonly [ngModel]="ciudad">
+    </mat-form-field>
+</div>

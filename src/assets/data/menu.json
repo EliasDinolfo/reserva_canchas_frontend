@@ -14,5 +14,9 @@
     {
         "nombre": "Ciudades",
         "redirect": "/dashboard/ciudades"
+    },
+    {
+        "nombre": "Complejos",
+        "redirect": "/dashboard/complejos"
     }
 ]

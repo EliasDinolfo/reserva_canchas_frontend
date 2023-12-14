@@ -14,6 +14,10 @@ import { VerProvinciaComponent } from './provincias/ver-provincia/ver-provincia.
 import { CiudadesComponent } from './ciudades/ciudades.component';
 import { ActualizarCiudadComponent } from './ciudades/actualizar-ciudad/actualizar-ciudad.component';
 import { VerCiudadComponent } from './ciudades/ver-ciudad/ver-ciudad.component';
+import { ComplejosComponent } from './complejos/complejos.component';
+import { CrearComplejoComponent } from './complejos/crear-complejo/crear-complejo.component';
+import { ActualizarComplejoComponent } from './complejos/actualizar-complejo/actualizar-complejo.component';
+import { VerComplejoComponent } from './complejos/ver-complejo/ver-complejo.component';
 //import { ReportesComponent } from './reportes/reportes.component';
 
 @NgModule({
@@ -28,6 +32,9 @@ import { VerCiudadComponent } from './ciudades/ver-ciudad/ver-ciudad.component';
     VerProvinciaComponent,
     CiudadesComponent,
     VerCiudadComponent,
+    ComplejosComponent,
+    VerComplejoComponent,
+    /*  CrearComplejoComponent, */
     /* CrearCiudadComponent, */
     /*  CrearProvinciaComponent, */
     //ReportesComponent
