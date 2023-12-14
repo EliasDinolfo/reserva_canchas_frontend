@@ -18,6 +18,8 @@ import { ComplejosComponent } from './complejos/complejos.component';
 import { CrearComplejoComponent } from './complejos/crear-complejo/crear-complejo.component';
 import { ActualizarComplejoComponent } from './complejos/actualizar-complejo/actualizar-complejo.component';
 import { VerComplejoComponent } from './complejos/ver-complejo/ver-complejo.component';
+import { ActualizarUsuarioComponent } from './usuarios/actualizar-usuario/actualizar-usuario.component';
+import { VerUsuarioComponent } from './usuarios/ver-usuario/ver-usuario.component';
 //import { ReportesComponent } from './reportes/reportes.component';
 
 @NgModule({
@@ -35,6 +37,8 @@ import { VerComplejoComponent } from './complejos/ver-complejo/ver-complejo.comp
     ComplejosComponent,
     VerComplejoComponent,
     /*  CrearComplejoComponent, */
+    VerUsuarioComponent,
+    //ActualizarUsuarioComponent,
     /* CrearCiudadComponent, */
     /*  CrearProvinciaComponent, */
     //ReportesComponent

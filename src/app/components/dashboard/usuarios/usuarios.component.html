@@ -63,10 +63,12 @@
           <ng-container matColumnDef="actions">
               <th mat-header-cell *matHeaderCellDef> </th>
               <td id="iconos" *matCellDef="let element; let i = index"> 
-                  <a class="pointer" style="color: #1878b0;" matTooltip="Más información">
+                  <a class="pointer" style="color: #1878b0;" matTooltip="Más información"
+                    routerLink="/dashboard/ver-usuario/{{element.id}}">
                       <mat-icon>search</mat-icon>
                   </a>
-                  <a class="pointer" style="color: #1f516f" matTooltip="Editar usuario">
+                  <a class="pointer" style="color: #1f516f" matTooltip="Editar usuario"
+                      routerLink="/dashboard/actualizar-usuario/{{element.id}}">
                       <mat-icon>edit</mat-icon>
                   </a>
                   <a class="pointer" (click)="eliminarUsuario(element.id)" style="color: rgb(209, 3, 3)" matTooltip="Eliminar usuario">

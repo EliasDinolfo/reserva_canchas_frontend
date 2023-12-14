@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
+import { ActualizarUsuarioComponent } from './usuarios/actualizar-usuario/actualizar-usuario.component';
 import { ProvinciasComponent } from './provincias/provincias.component';
 import { CrearProvinciaComponent } from './provincias/crear-provincia/crear-provincia.component';
 import { ActualizarProvinciaComponent } from './provincias/actualizar-provincia/actualizar-provincia.component';
@@ -17,6 +18,7 @@ import { ComplejosComponent } from './complejos/complejos.component';
 import { CrearComplejoComponent } from './complejos/crear-complejo/crear-complejo.component';
 import { ActualizarComplejoComponent } from './complejos/actualizar-complejo/actualizar-complejo.component';
 import { VerComplejoComponent } from './complejos/ver-complejo/ver-complejo.component';
+import { VerUsuarioComponent } from './usuarios/ver-usuario/ver-usuario.component';
 //import { ReportesComponent } from './reportes/reportes.component';
 
 const routes: Routes = [
@@ -28,6 +30,14 @@ const routes: Routes = [
       { path: 'usuarios', component: UsuariosComponent },
       //{ path: 'reportes', component: ReportesComponent}
       { path: 'crear-usuario', component: CrearUsuarioComponent },
+      {
+        path: 'actualizar-usuario/:id',
+        component: ActualizarUsuarioComponent,
+      },
+      {
+        path: 'ver-usuario/:id',
+        component: VerUsuarioComponent,
+      },
       { path: 'provincias', component: ProvinciasComponent },
       { path: 'crear-provincia', component: CrearProvinciaComponent },
       {
