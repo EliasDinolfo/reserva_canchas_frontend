@@ -15,6 +15,7 @@ import { CiudadesComponent } from './ciudades/ciudades.component';
 import { ActualizarCiudadComponent } from './ciudades/actualizar-ciudad/actualizar-ciudad.component';
 import { VerCiudadComponent } from './ciudades/ver-ciudad/ver-ciudad.component';
 import { ActualizarUsuarioComponent } from './usuarios/actualizar-usuario/actualizar-usuario.component';
+import { VerUsuarioComponent } from './usuarios/ver-usuario/ver-usuario.component';
 //import { ReportesComponent } from './reportes/reportes.component';
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ActualizarUsuarioComponent } from './usuarios/actualizar-usuario/actual
     ProvinciasComponent,
     VerProvinciaComponent,
     CiudadesComponent,
-    VerCiudadComponent
+    VerCiudadComponent,
+    VerUsuarioComponent
     //ActualizarUsuarioComponent,
     /* CrearCiudadComponent, */
     /*  CrearProvinciaComponent, */

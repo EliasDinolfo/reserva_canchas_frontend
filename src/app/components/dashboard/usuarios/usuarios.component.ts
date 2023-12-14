@@ -37,10 +37,27 @@ export class UsuariosComponent {
       sessionStorage.removeItem('mensaje');
       sessionStorage.removeItem('tipo_mensaje');
     }
-
+/*
     this.dataSource.filterPredicate = (data: any, filter: any): any =>
       data.name.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !==
       -1;
+*/
+    this.dataSource.filterPredicate = (data: any, filter: string): boolean => {
+      const searchTerm = filter.trim().toLowerCase();
+    
+      return (
+        data.username.toLowerCase().includes(searchTerm) ||
+        data.password.toLowerCase().includes(searchTerm) ||
+        data.name.toLowerCase().includes(searchTerm) ||
+        data.lastname.toLowerCase().includes(searchTerm) ||
+        data.dni.toLowerCase().includes(searchTerm) ||
+        data.phone_number.toLowerCase().includes(searchTerm) ||
+        data.email.toLowerCase().includes(searchTerm) ||
+        data.role.toLowerCase().includes(searchTerm)
+      );
+    };
+      
+      
     this.usuarioService
       .getUsuarios()
       .subscribe((result: any) => (this.dataSource.data = result.data));

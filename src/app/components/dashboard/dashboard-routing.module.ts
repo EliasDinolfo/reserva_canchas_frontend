@@ -14,6 +14,7 @@ import { CiudadesComponent } from './ciudades/ciudades.component';
 import { CrearCiudadComponent } from './ciudades/crear-ciudad/crear-ciudad.component';
 import { ActualizarCiudadComponent } from './ciudades/actualizar-ciudad/actualizar-ciudad.component';
 import { VerCiudadComponent } from './ciudades/ver-ciudad/ver-ciudad.component';
+import { VerUsuarioComponent } from './usuarios/ver-usuario/ver-usuario.component';
 //import { ReportesComponent } from './reportes/reportes.component';
 
 const routes: Routes = [
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: 'actualizar-usuario/:id',
         component: ActualizarUsuarioComponent,
+      },
+      {
+        path: 'ver-usuario/:id',
+        component: VerUsuarioComponent,
       },
       { path: 'provincias', component: ProvinciasComponent },
       { path: 'crear-provincia', component: CrearProvinciaComponent },

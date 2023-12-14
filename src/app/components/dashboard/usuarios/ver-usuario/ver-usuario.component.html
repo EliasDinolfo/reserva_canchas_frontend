@@ -1,0 +1,39 @@
+<div class="container">
+    <p><button style="margin-right: 25px;" mat-raised-button routerLink="/dashboard/usuarios">Volver</button><br></p>
+    <mat-toolbar style="margin-bottom: 25px;">
+        <span>Usuario:</span>
+        <div class="example-spacer"></div>
+    </mat-toolbar>
+    <mat-form-field>
+        <mat-label>Nombre de Usuario</mat-label>
+        <input matInput readonly [ngModel]="nombreUsuario">
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input matInput readonly [ngModel]="contrasena">
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput readonly [ngModel]="nombre">
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+        <mat-label>Apellido</mat-label>
+        <input matInput readonly [ngModel]="apellido">
+    </mat-form-field>&nbsp; <br>
+    <mat-form-field>
+        <mat-label>DNI</mat-label>
+        <input matInput readonly [ngModel]="dni">
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+        <mat-label>Telefono</mat-label>
+        <input matInput readonly [ngModel]="telefono">
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput readonly [ngModel]="email">
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+        <mat-label>Rol</mat-label>
+        <input matInput readonly [ngModel]="rol">
+    </mat-form-field>
+</div>
