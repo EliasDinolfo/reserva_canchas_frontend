@@ -15,6 +15,7 @@ import { CiudadService } from 'src/app/services/ciudad.service';
 import { DataService } from 'src/app/services/data.service';
 import { MatSelectModule } from '@angular/material/select';
 import { NgFor } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-crear-ciudad',
@@ -34,14 +35,14 @@ import { NgFor } from '@angular/common';
 })
 export class CrearCiudadComponent {
   provincias: any = [];
-  error: string = '';
   nombre = new FormControl('', [Validators.required]);
   codigo_postal = new FormControl('', [Validators.required]);
   provincia = new FormControl('', [Validators.required]);
   constructor(
     private ciudadService: CiudadService,
     private dataService: DataService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -61,7 +62,6 @@ export class CrearCiudadComponent {
     return false;
   }
   crear() {
-    this.error = '';
     if (!this.getErrorMessage()) {
       const city: City = {
         name: this.nombre.value || '',
@@ -70,13 +70,24 @@ export class CrearCiudadComponent {
       };
       this.ciudadService.saveCity(city).subscribe({
         next: (result) => {
+          sessionStorage.setItem('mensaje', 'La ciudad fue creada con éxito.');
+          sessionStorage.setItem('tipo_mensaje', 'green-snackbar');
           this.router.navigate(['/dashboard/ciudades']);
         },
         error: (e) => {
           if (
             e.error.message.includes('E11000 duplicate key error collection')
           ) {
-            this.error = 'La ciudad ingresada ya existe.';
+            this._snackBar.open(
+              'La ciudad ingresada ya existe (nombre - provincia).',
+              '',
+              {
+                duration: 5000,
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+                panelClass: ['red-snackbar'],
+              }
+            );
           }
         },
       });

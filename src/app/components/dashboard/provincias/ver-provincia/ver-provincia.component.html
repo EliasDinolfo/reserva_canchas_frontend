@@ -4,9 +4,10 @@
         <span>Provincia: {{nombre}}</span>
         <div class="example-spacer"></div>
     </mat-toolbar>
+    <h2>&nbsp;Ciudades:</h2>
     <mat-form-field>
         <mat-label>Filtro</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Nombre" #input autocomplete="off">
+        <input matInput (keyup)="applyFilter($event)" placeholder="Nombre, código postal" #input autocomplete="off">
     </mat-form-field>
 
     <div class="mat-elevation-z8">
@@ -21,6 +22,11 @@
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
                 <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="postal_code">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Código postal </th>
+                <td mat-cell *matCellDef="let element"> {{element.postal_code}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

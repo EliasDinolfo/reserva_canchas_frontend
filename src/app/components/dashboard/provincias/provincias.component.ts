@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/services/data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-provincias',
@@ -12,7 +13,11 @@ import { DataService } from 'src/app/services/data.service';
 export class ProvinciasComponent {
   provinces: any;
   public mensaje = sessionStorage.getItem('mensaje');
-  constructor(private dataService: DataService) {}
+  public tipo_mensaje = sessionStorage.getItem('tipo_mensaje');
+  constructor(
+    private dataService: DataService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   displayedColumns: string[] = ['name', 'actions'];
   dataSource = new MatTableDataSource<any>();
@@ -21,6 +26,19 @@ export class ProvinciasComponent {
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit() {
+    if (this.mensaje !== null) {
+      this._snackBar.open(this.mensaje, '', {
+        duration: 5000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        panelClass: [this.tipo_mensaje || ''],
+      });
+      this.mensaje = null;
+      this.tipo_mensaje = null;
+      sessionStorage.removeItem('mensaje');
+      sessionStorage.removeItem('tipo_mensaje');
+    }
+
     this.dataSource.filterPredicate = (data: any, filter: any): any =>
       data.name.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !==
       -1;
@@ -50,10 +68,21 @@ export class ProvinciasComponent {
             this.dataSource.data = result.data;
             this.dataSource.connect().next(result.data);
             this.ngAfterViewInit();
+            this._snackBar.open('La provincia fue eliminada con éxito.', '', {
+              duration: 5000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom',
+              panelClass: ['green-snackbar'],
+            });
           });
         },
         error: (e) => {
-          this.mensaje = e.error.message;
+          this._snackBar.open(e.error.message, '', {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: ['red-snackbar'],
+          });
         },
       });
     }

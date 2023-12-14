@@ -16,6 +16,7 @@ import { City } from 'src/app/intefaces/cities.interface';
 import { DataService } from 'src/app/services/data.service';
 import { MatSelectModule } from '@angular/material/select';
 import { NgFor } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-actualizar-ciudad',
@@ -36,7 +37,6 @@ import { NgFor } from '@angular/common';
 export class ActualizarCiudadComponent {
   provincias: any = [];
   id: string = '0';
-  error: string = '';
   nombreAnterior = new FormControl('');
   nombre = new FormControl('', [Validators.required]);
   codigoPostal = new FormControl('', [Validators.required]);
@@ -47,7 +47,8 @@ export class ActualizarCiudadComponent {
     private ciudadService: CiudadService,
     private dataService: DataService,
     private router: Router,
-    private activatedRouted: ActivatedRoute
+    private activatedRouted: ActivatedRoute,
+    private _snackBar: MatSnackBar
   ) {}
   getErrorMessage(): boolean {
     if (
@@ -74,8 +75,12 @@ export class ActualizarCiudadComponent {
             this.provinciaAnterior.setValue(result.province);
           },
           error: (error) => {
+            sessionStorage.setItem(
+              'mensaje',
+              'La ciudad solicitada no existe.'
+            );
+            sessionStorage.setItem('tipo_mensaje', 'red-snackbar');
             this.router.navigate(['/dashboard/ciudades']);
-            sessionStorage.setItem('mensaje', 'La ciudad solicitada no existe');
           },
         });
       });
@@ -83,7 +88,6 @@ export class ActualizarCiudadComponent {
   }
 
   actualizar() {
-    this.error = '';
     if (!this.getErrorMessage()) {
       const city: City = {
         _id: this.id,
@@ -93,13 +97,27 @@ export class ActualizarCiudadComponent {
       };
       this.ciudadService.editCity(city).subscribe({
         next: (result) => {
+          sessionStorage.setItem(
+            'mensaje',
+            'La ciudad fue modificada con éxito.'
+          );
+          sessionStorage.setItem('tipo_mensaje', 'green-snackbar');
           this.router.navigate(['/dashboard/ciudades']);
         },
         error: (e) => {
           if (
             e.error.message.includes('E11000 duplicate key error collection')
           ) {
-            this.error = 'La ciudad ingresada ya existe.';
+            this._snackBar.open(
+              'La ciudad ingresada ya existe (nombre - provincia).',
+              '',
+              {
+                duration: 5000,
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+                panelClass: ['red-snackbar'],
+              }
+            );
           }
         },
       });

@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CiudadService } from 'src/app/services/ciudad.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-ciudades',
@@ -12,7 +13,11 @@ import { CiudadService } from 'src/app/services/ciudad.service';
 export class CiudadesComponent {
   cities: any;
   public mensaje = sessionStorage.getItem('mensaje');
-  constructor(private cityService: CiudadService) {}
+  public tipo_mensaje = sessionStorage.getItem('tipo_mensaje');
+  constructor(
+    private cityService: CiudadService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   displayedColumns: string[] = ['name', 'postal_code', 'province', 'actions'];
   dataSource = new MatTableDataSource<any>();
@@ -21,6 +26,19 @@ export class CiudadesComponent {
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit() {
+    if (this.mensaje !== null) {
+      this._snackBar.open(this.mensaje, '', {
+        duration: 5000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        panelClass: [this.tipo_mensaje || ''],
+      });
+      this.mensaje = null;
+      this.tipo_mensaje = null;
+      sessionStorage.removeItem('mensaje');
+      sessionStorage.removeItem('tipo_mensaje');
+    }
+
     this.dataSource.filterPredicate = (data: any, filter: any): any =>
       data.name.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !==
         -1 ||
@@ -52,7 +70,7 @@ export class CiudadesComponent {
   }
 
   eliminacion(id: string) {
-    if (confirm('¿Estás seguro que quieres eliminar la provincia?')) {
+    if (confirm('¿Estás seguro que quieres eliminar la ciudad?')) {
       this.cityService.deleteCity(id).subscribe({
         next: (result2: any) => {
           this.mensaje = '';
@@ -60,10 +78,21 @@ export class CiudadesComponent {
             this.dataSource.data = result.data;
             this.dataSource.connect().next(result.data);
             this.ngAfterViewInit();
+            this._snackBar.open('La ciudad fue eliminada con éxito.', '', {
+              duration: 5000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom',
+              panelClass: ['green-snackbar'],
+            });
           });
         },
         error: (e) => {
-          this.mensaje = e.error.message;
+          this._snackBar.open(e.error.message, '', {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: ['red-snackbar'],
+          });
         },
       });
     }
