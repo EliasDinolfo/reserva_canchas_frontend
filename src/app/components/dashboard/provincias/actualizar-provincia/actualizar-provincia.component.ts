@@ -95,6 +95,13 @@ export class ActualizarProvinciaComponent implements OnInit {
                 panelClass: ['red-snackbar'],
               }
             );
+          } else if (e.status === 400) {
+            this._snackBar.open(e.error.message, '', {
+              duration: 5000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom',
+              panelClass: ['red-snackbar'],
+            });
           }
         },
       });
