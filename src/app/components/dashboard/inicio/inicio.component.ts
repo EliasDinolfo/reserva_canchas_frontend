@@ -15,7 +15,11 @@ export class InicioComponent {
   provinceSeleccionado: string = '0';
   citySeleccionado: string = '0';
   complexes: any;
-  constructor(private dataService: DataService, private complejoService: ComplejoService, private activatedRouted: ActivatedRoute,) {}
+  constructor(
+    private dataService: DataService,
+    private complejoService: ComplejoService,
+    private activatedRouted: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.dataService
@@ -25,25 +29,27 @@ export class InicioComponent {
       .getCities(this.provinceSeleccionado)
       .subscribe((result) => (this.cities = result));
 
-    this.complejoService
+    /* this.complejoService
       .getComplexes()
-      .subscribe((result) => (this.complexes = result));
+      .subscribe((result) => (this.complexes = result)); */
 
-      this.activatedRouted.params.subscribe((params) => {
-        this.reservado = params['id'];
-      });
+    this.activatedRouted.params.subscribe((params) => {
+      this.reservado = params['id'];
+    });
   }
   actualizar() {
+    this.citySeleccionado = '0';
+    this.complexes = null;
     this.dataService
       .getCities(this.provinceSeleccionado)
       .subscribe((result) => (this.cities = result));
   }
   actualizarComplejos() {
     this.dataService
-      .getComplexes(this.citySeleccionado)
+      .getComplexesByCity(this.citySeleccionado)
       .subscribe((result) => (this.complexes = result));
   }
   cancelar() {
-    this.reservado='';
+    this.reservado = '';
   }
 }

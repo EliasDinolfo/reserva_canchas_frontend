@@ -9,16 +9,27 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.scss']
+  styleUrls: ['./usuarios.component.scss'],
 })
 export class UsuariosComponent {
-
   usuarios: any;
   public mensaje = sessionStorage.getItem('mensaje');
   public tipo_mensaje = sessionStorage.getItem('tipo_mensaje');
-  constructor(private usuarioService: UsuarioService, private _snackBar: MatSnackBar) {}
+  constructor(
+    private usuarioService: UsuarioService,
+    private _snackBar: MatSnackBar
+  ) {}
 
-  displayedColumns: string[] = ['username', 'name', 'lastname', 'dni', 'phone_number', 'email', 'role', 'actions'];
+  displayedColumns: string[] = [
+    'username',
+    'name',
+    'lastname',
+    'dni',
+    'phone_number',
+    'email',
+    'role',
+    'actions',
+  ];
   dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -37,14 +48,14 @@ export class UsuariosComponent {
       sessionStorage.removeItem('mensaje');
       sessionStorage.removeItem('tipo_mensaje');
     }
-/*
+    /*
     this.dataSource.filterPredicate = (data: any, filter: any): any =>
       data.name.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !==
       -1;
 */
     this.dataSource.filterPredicate = (data: any, filter: string): boolean => {
       const searchTerm = filter.trim().toLowerCase();
-    
+
       return (
         data.username.toLowerCase().includes(searchTerm) ||
         data.password.toLowerCase().includes(searchTerm) ||
@@ -56,8 +67,7 @@ export class UsuariosComponent {
         data.role.toLowerCase().includes(searchTerm)
       );
     };
-      
-      
+
     this.usuarioService
       .getUsuarios()
       .subscribe((result: any) => (this.dataSource.data = result.data));
@@ -82,15 +92,14 @@ export class UsuariosComponent {
           this.dataSource.data = result.data;
           this.dataSource.connect().next(result.data);
           this.ngAfterViewInit();
+          this._snackBar.open('El usuario fue eliminado con éxito', '', {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: ['green-snackbar'],
+          });
         });
       });
     }
-
-    this._snackBar.open('El usuario fue eliminado con éxito', '', {
-      duration: 5000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-      panelClass: ['green-snackbar'],
-    })
   }
 }

@@ -40,7 +40,7 @@ export class ComplejoService {
           _id: response.data.id,
           name: response.data.name,
           address: response.data.address,
-          phone: response.data.address,
+          phone: response.data.phone,
           email: response.data.email,
           city: response.data.city,
         };

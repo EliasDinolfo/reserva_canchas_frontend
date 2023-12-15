@@ -48,7 +48,7 @@ export class DataService {
     return this.http.get<City[]>(`${this.apiURL}cities/province/` + id);
   }
 
-  getComplexes(id: string): Observable<Complex[]> {
-    return this.http.get<Complex[]>(`${this.apiURL}complexes`);
+  getComplexesByCity(id: string): Observable<Complex[]> {
+    return this.http.get<Complex[]>(`${this.apiURL}complexes/city/` + id);
   }
 }
