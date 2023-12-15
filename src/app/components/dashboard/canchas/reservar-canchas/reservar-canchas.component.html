@@ -1,11 +1,11 @@
 <div class="container">
-    <p><button style="margin-right: 25px;" mat-raised-button routerLink="/dashboard/complejos">Volver</button><br></p>
+    <p><button style="margin-right: 25px;" mat-raised-button routerLink="/dashboard">Volver</button><br></p>
     <mat-toolbar class="mat-elevation-z12" style="margin-bottom: 25px;">
-        <span>Complejo:</span>
+        <span>Reservar cancha:</span>
         <div class="example-spacer"></div>
     </mat-toolbar>
     <mat-form-field>
-        <mat-label>Nombre</mat-label>
+        <mat-label>Nombre del complejo</mat-label>
         <input matInput readonly [ngModel]="nombre">
     </mat-form-field>&nbsp;
     <mat-form-field>
@@ -28,4 +28,15 @@
         <mat-label>Ciudad</mat-label>
         <input matInput readonly [ngModel]="ciudad">
     </mat-form-field>
+    <mat-form-field>
+        <mat-label>Horarios</mat-label>
+        <input matInput readonly value="16:00hs a 17:30hs">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Precio</mat-label>
+        <input matInput readonly value="$5000">
+    </mat-form-field>
+    <br><br>
+    <button style="margin-right: 25px;" mat-raised-button routerLink="/dashboard">Cancelar</button>
+    <button type="submit" mat-raised-button color="primary" (click)="reservar()">Confirmar</button>
 </div>

@@ -19,6 +19,8 @@ import { CrearComplejoComponent } from './complejos/crear-complejo/crear-complej
 import { ActualizarComplejoComponent } from './complejos/actualizar-complejo/actualizar-complejo.component';
 import { VerComplejoComponent } from './complejos/ver-complejo/ver-complejo.component';
 import { VerUsuarioComponent } from './usuarios/ver-usuario/ver-usuario.component';
+import { CanchasComponent } from './canchas/canchas.component';
+import { ReservarCanchasComponent } from './canchas/reservar-canchas/reservar-canchas.component';
 //import { ReportesComponent } from './reportes/reportes.component';
 
 const routes: Routes = [
@@ -68,6 +70,9 @@ const routes: Routes = [
         path: 'ver-complejo/:id',
         component: VerComplejoComponent,
       },
+      { path: 'canchas', component: CanchasComponent },
+      { path: 'reservar-canchas/:id', component: ReservarCanchasComponent },
+      { path: ':id', component: InicioComponent },
     ],
   },
 ];

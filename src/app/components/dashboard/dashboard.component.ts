@@ -13,5 +13,5 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  
+
 }

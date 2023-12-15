@@ -1,16 +1,16 @@
 <div class="container">
     <p><button style="margin-right: 25px;" mat-raised-button routerLink="/dashboard/provincias">Volver</button><br></p>
-    <mat-toolbar style="margin-bottom: 25px;">
+    <mat-toolbar class="mat-elevation-z12" style="margin-bottom: 25px;">
         <span>Provincia: {{nombre}}</span>
         <div class="example-spacer"></div>
     </mat-toolbar>
     <h2>&nbsp;Ciudades:</h2>
-    <mat-form-field>
+    <mat-form-field style="border-top: 1px solid rgb(155, 155, 155);">
         <mat-label>Filtro</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Nombre, código postal" #input autocomplete="off">
     </mat-form-field>
 
-    <div class="mat-elevation-z8">
+    <div class="mat-elevation-z20">
         <table id="tabla" mat-table [dataSource]="dataSource" matSort>
             <!-- Id Column -->
             <ng-container matColumnDef="id">

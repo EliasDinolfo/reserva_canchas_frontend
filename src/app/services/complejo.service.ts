@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Complex } from '../interfaces/complexes.interface';
+import { City } from '../intefaces/cities.interface.js';
 
 @Injectable({
   providedIn: 'root',

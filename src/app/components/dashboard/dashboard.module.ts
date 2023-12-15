@@ -20,6 +20,8 @@ import { ActualizarComplejoComponent } from './complejos/actualizar-complejo/act
 import { VerComplejoComponent } from './complejos/ver-complejo/ver-complejo.component';
 import { ActualizarUsuarioComponent } from './usuarios/actualizar-usuario/actualizar-usuario.component';
 import { VerUsuarioComponent } from './usuarios/ver-usuario/ver-usuario.component';
+import { CanchasComponent } from './canchas/canchas.component';
+import { ReservarCanchasComponent } from './canchas/reservar-canchas/reservar-canchas.component';
 //import { ReportesComponent } from './reportes/reportes.component';
 
 @NgModule({
@@ -38,6 +40,8 @@ import { VerUsuarioComponent } from './usuarios/ver-usuario/ver-usuario.componen
     VerComplejoComponent,
     /*  CrearComplejoComponent, */
     VerUsuarioComponent,
+    CanchasComponent,
+    ReservarCanchasComponent,
     //ActualizarUsuarioComponent,
     /* CrearCiudadComponent, */
     /*  CrearProvinciaComponent, */

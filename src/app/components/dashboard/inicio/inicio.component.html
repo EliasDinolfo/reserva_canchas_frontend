@@ -1,4 +1,4 @@
-<mat-form-field *ngIf="provinces!=null; else espera">
+<mat-form-field  *ngIf="provinces!=null; else espera">
     <mat-label>Provincias</mat-label>
     <mat-select [(ngModel)]="provinceSeleccionado" (selectionChange)="actualizar()">
       <mat-option *ngFor=" let province of provinces.data" value="{{province.id}}">{{province.name}}</mat-option>
@@ -7,35 +7,35 @@
 
   <ng-template #espera>Cargando provincias...</ng-template>
 
-  <mat-form-field *ngIf="cities!=null; else espera2">
+  <mat-form-field id="city" *ngIf="cities!=null; else espera2">
     <mat-label>Ciudades</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]="citySeleccionado" (selectionChange)="actualizarComplejos()">
       <mat-option *ngFor=" let city of cities.data" value="{{city.id}}">{{city.name}}</mat-option>
     </mat-select>
   </mat-form-field>
   <ng-template #espera2>Cargando ciudades...</ng-template>
 
-  <mat-card style="border: 1px solid;width: 300px;">
-    <mat-card-header><strong>Cancha</strong></mat-card-header>
-    <mat-card-content>Horarios: 9 a 13hs, 16 a 18hs, 21 a 00hs</mat-card-content>
+  <ng-container *ngIf="complexes!=null">
+  <ng-container *ngFor="let complex of complexes.data">
+  <!--<ng-container *ngIf="complex.city===citySeleccionado">  -->
+  <mat-card>
+    <mat-card-header><strong>{{complex.name}}</strong></mat-card-header>
+    <mat-card-content >Cancha disponible de 16:00hs a 17:30hs <ng-container 
+      *ngIf="reservado == complex.id"><button mat-raised-button color="primary" 
+      style="background-color: #e60f0f; margin-left: 40.5%;"
+      (click)="cancelar()" >
+       CANCELAR RESERVA</button>
+       
+      </ng-container>
+       <ng-container *ngIf="reservado!=complex.id">
+      <button mat-raised-button color="primary" 
+       style="background-color: #4CAF50; margin-left: 50%;"routerLink="/dashboard//reservar-canchas/{{complex.id}}" >
+        RESERVAR</button>
+      </ng-container>
+      </mat-card-content>
+    <!-- <button mat-raised-button color="primary"  style="background-color: #4CAF50;"routerLink="/dashboard/crear-usuario">RESERVAR</button> -->
+    <!--<mat-card-content>Horarios: {{ complejo.horarios }}</mat-card-content> -->
   </mat-card>
-  <mat-card style="border: 1px solid;width: 300px;">
-    <mat-card-header><strong>Cancha</strong></mat-card-header>
-    <mat-card-content>Horarios: 9 a 13hs, 16 a 18hs, 21 a 00hs</mat-card-content>
-  </mat-card>
-  <mat-card style="border: 1px solid;width: 300px;">
-    <mat-card-header><strong>Cancha</strong></mat-card-header>
-    <mat-card-content>Horarios: 9 a 13hs, 16 a 18hs, 21 a 00hs</mat-card-content>
-  </mat-card>
-  <mat-card style="border: 1px solid;width: 300px;">
-    <mat-card-header><strong>Cancha</strong></mat-card-header>
-    <mat-card-content>Horarios: 9 a 13hs, 16 a 18hs, 21 a 00hs</mat-card-content>
-  </mat-card>
-  <mat-card style="border: 1px solid;width: 300px;">
-    <mat-card-header><strong>Cancha</strong></mat-card-header>
-    <mat-card-content>Horarios: 9 a 13hs, 16 a 18hs, 21 a 00hs</mat-card-content>
-  </mat-card>
-  <mat-card style="border: 1px solid;width: 300px;">
-    <mat-card-header><strong>Cancha</strong></mat-card-header>
-    <mat-card-content>Horarios: 9 a 13hs, 16 a 18hs, 21 a 00hs</mat-card-content>
-  </mat-card>
+</ng-container>
+</ng-container>
+<!--</ng-container> -->

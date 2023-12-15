@@ -1,6 +1,6 @@
 <div class="container">
     <p style="color: red;">{{mensaje}}</p>
-    <mat-toolbar style="margin-bottom: 25px;">
+    <mat-toolbar class="mat-elevation-z10" style="margin-bottom: 25px;">
         <span>Usuarios</span>
         <div class="example-spacer"></div>
 
@@ -8,12 +8,12 @@
     </mat-toolbar>
 
   <!--  <div *ngIf="usuarios.length > 0"> -->
-      <mat-form-field>
+      <mat-form-field style="border-top: 1px solid rgb(155, 155, 155);">
         <mat-label>Filtro</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Usuario, Nombre, Apellido, DNI, Teléfono, Email o Rol" #input autocomplete="off">
       </mat-form-field>
   
-      <div class="mat-elevation-z8">
+      <div class="mat-elevation-z20">
         <table id="tabla" mat-table [dataSource]="dataSource" matSort>
        
           <!-- Position Column -->

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Province } from '../intefaces/provinces.interface.js';
 import { City } from '../intefaces/cities.interface.js';
 import { map } from 'rxjs/operators';
+import { Complex } from '../interfaces/complexes.interface.js';
 
 @Injectable({
   providedIn: 'root',
@@ -45,5 +46,9 @@ export class DataService {
 
   getCities(id: string): Observable<City[]> {
     return this.http.get<City[]>(`${this.apiURL}cities/province/` + id);
+  }
+
+  getComplexes(id: string): Observable<Complex[]> {
+    return this.http.get<Complex[]>(`${this.apiURL}complexes`);
   }
 }
